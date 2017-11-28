@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="RED"
+        android:summaryOff="hidden"
+        android:summaryOn="shown"
+        android:title="RED" />
+
+    <CheckBoxPreference
+        android:defaultValue="flase"
+        android:key="BLUE"
+        android:summaryOff="hidden"
+        android:summaryOn="shown"
+        android:title="BLUE" />
+
+
+
+</PreferenceScreen>
