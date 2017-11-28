@@ -11,7 +11,7 @@ import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     ConstraintLayout mLayout;
 
@@ -30,10 +30,18 @@ public class MainActivity extends AppCompatActivity {
     private void show()
     {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        red(sharedPreferences.getBoolean("RED",true));
+        red(sharedPreferences.getBoolean("RED",false));
+        blue(sharedPreferences.getBoolean("BLUE",false));
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
 
     private void red(boolean ans)
     {
@@ -78,5 +86,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        if (key.equals("RED"))
+        {
+            red(sharedPreferences.getBoolean(key,true));
+        }
+        else if (key.equals("BLUE"))
+        {
+            red(sharedPreferences.getBoolean(key,true));
+        }
+
+
     }
 }
